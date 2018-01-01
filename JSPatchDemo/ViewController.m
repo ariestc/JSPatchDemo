@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "MyView.h"
+#import "MyBlock.h"
+#import "MyArray.h"
 
 @interface ViewController ()
 
@@ -20,11 +22,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-   
+    //[self setupUIView];
+    //[self setupButton];
+    
+//    [self setupBlock];
     
 }
 
--(void)test01
+
+-(void)setupBlock
+{
+    
+    //3.
+    [MyBlock executeBlock:^(NSDictionary *dict) {
+       
+        NSLog(@"name=%@,age=%@",dict[@"name"],dict[@"age"]);
+    }];
+    //2.
+   // [MyBlock createCustomBlock];
+    
+  //1.
+//    [MyBlock requestWithBlock:^(NSString *content, BOOL success) {
+//
+//        if(success){
+//            NSLog(@"%@",content);
+//        }else{
+//            NSLog(@"please rest a litte");
+//        }
+//
+//    }];
+}
+
+-(void)setupUIView
 {
     
     MyView *myView=[[MyView alloc] initWithFrame:CGRectMake(30, 80, 50, 50)];
@@ -35,21 +64,27 @@
 }
 
 
-- (void)loadButton {
-    UIButton *tipBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 80, 200, 30)];
-    [tipBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [tipBtn setBackgroundColor:[UIColor orangeColor]];
-    [tipBtn setTitle:@"Jack" forState:UIControlStateNormal];
+- (void)setupButton {
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 80, 200, 50)];
+    
+    [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    
+    [btn setBackgroundColor:[UIColor orangeColor]];
+    
+    [btn setTitle:@"Goodbye 2017" forState:UIControlStateNormal];
    
-    [tipBtn addTarget:self action:@selector(clickedBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(btnDidClick:) forControlEvents:UIControlEventTouchUpInside];
    
-    [self.view addSubview:tipBtn];
+    [self.view addSubview:btn];
     
 }
 
-- (void)clickedBtn:(UIButton *)sender {
-    sender.backgroundColor = [UIColor redColor];
-    [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+- (void)btnDidClick:(UIButton *)button {
+    
+    button.backgroundColor = [UIColor redColor];
+    
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
 
